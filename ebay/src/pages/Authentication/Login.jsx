@@ -43,7 +43,7 @@ export default function Login() {
         </a>
       </header>
       <Input className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg" />
-      <Button className="block m-auto w-[22rem] h-12 bg-blue-600 text-white mt-4 rounded-full">
+      <Button className="block m-auto w-[22rem] h-12 bg-blue-600 text-white mt-4 rounded-full hover:bg-blue-500">
         Continue
       </Button>
       <div className="flex items-center justify-center w-[22rem] m-auto">
@@ -51,7 +51,7 @@ export default function Login() {
         <span className="my-7 mx-4 text-sm text-stone-700 font-normal">or</span>
         <div className="flex-grow border-t border-gray-400"></div>
       </div>
-      <Button className="block m-auto w-[22rem] h-12 border border-stone-700 text-stone-700 rounded-full">
+      <Button className="block m-auto w-[22rem] h-12 border border-stone-700 text-stone-700 rounded-full hover:opacity-80">
         <div className="w-full h-full flex justify-center items-center flex-row relative">
           <div className="w-6 h-6 absolute left-5">
             <img
