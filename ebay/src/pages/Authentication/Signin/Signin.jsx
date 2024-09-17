@@ -1,7 +1,7 @@
 import Button from "./Button";
 import Input from "./Input";
 
-export default function Login() {
+export default function Signin() {
   return (
     <div className="relative h-screen pt-11">
       <div className="logo-ebay w-[8.75rem] h-12 ml-2">
@@ -42,7 +42,10 @@ export default function Login() {
           create an account
         </a>
       </header>
-      <Input className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg" />
+      <Input
+        className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg"
+        placeholder="Email or username"
+      />
       <Button className="block m-auto w-[22rem] h-12 bg-blue-600 text-white mt-4 rounded-full hover:bg-blue-500">
         Continue
       </Button>

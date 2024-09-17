@@ -1,6 +1,7 @@
 const routesConfig = {
   root: "/",
-  login: "/login",
+  signin: "/signin",
+  signup: "/signup",
 };
 
 export default routesConfig;
