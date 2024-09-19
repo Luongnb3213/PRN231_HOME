@@ -1,11 +1,13 @@
-import React from 'react'
-
+import React from 'react';
+import Topbar from '../Topbar';
+import Bottombar from '../Bottombar';
 const Header = () => {
   return (
     <div>
-         This is Header
+      <Topbar />
+      <Bottombar />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
