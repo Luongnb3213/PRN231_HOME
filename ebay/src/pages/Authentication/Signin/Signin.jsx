@@ -1,7 +1,32 @@
 import Button from "./Button";
 import Input from "./Input";
+import { NavLink } from "react-router-dom";
+import * as Yup from "yup";
+import { useRef } from "react";
+import { useState } from "react";
+import ErrorMsg from "../../CommonComponents/Error";
+import { useEffect } from "react";
 
 export default function Signin() {
+  const [showError, setShowError] = useState(false);
+  const usernameValueRef = useRef();
+  const [msgErr, setMsgErr] = useState("");
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().required("Email is required"),
+  });
+
+  const handleBtnClick = async () => {
+    const username = usernameValueRef.current.value;
+    console.log(username);
+    try {
+      await validationSchema.validate({ username });
+      setShowError((prev) => false);
+    } catch (err) {
+      setShowError((prev) => true);
+      setMsgErr(err.errors[0]);
+    }
+  };
+
   return (
     <div className="relative h-screen pt-11">
       <div className="logo-ebay w-[8.75rem] h-12 ml-2">
@@ -38,15 +63,25 @@ export default function Signin() {
       <header className="w-full text-center">
         <h1 className="text-[2.5rem] font-medium text-login">Hello</h1>
         <p className="inline-block text-[0.9rem] mr-1">Sign in to eBay or </p>
-        <a className="inline-block text-[0.9rem] cursor-pointer text-blue-600 underline">
-          create an account
-        </a>
+        <div className="inline-block text-[0.9rem] cursor-pointer text-blue-600 underline">
+          <NavLink to="/signup">create an account</NavLink>
+        </div>
       </header>
       <Input
+        ref={usernameValueRef}
         className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg"
         placeholder="Email or username"
       />
-      <Button className="block m-auto w-[22rem] h-12 bg-blue-600 text-white mt-4 rounded-full hover:bg-blue-500">
+      {showError && (
+        <ErrorMsg
+          className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
+          msg={msgErr}
+        />
+      )}
+      <Button
+        onClick={handleBtnClick}
+        className="block m-auto w-[22rem] h-12 bg-blue-600 text-white mt-4 rounded-full hover:bg-blue-500"
+      >
         Continue
       </Button>
       <div className="flex items-center justify-center w-[22rem] m-auto">

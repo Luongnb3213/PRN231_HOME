@@ -1,4 +1,5 @@
 import Right from "./Right";
+import { NavLink } from "react-router-dom";
 
 export default function Signup() {
   return (
@@ -39,9 +40,9 @@ export default function Signup() {
           <span className="text-stone-500 font-[400]">
             Already have an account?{" "}
           </span>
-          <a href="" className="underline">
-            Sign in
-          </a>
+          <div className="underline inline-block">
+            <NavLink to="/signin">Sign in</NavLink>
+          </div>
         </div>
       </header>
       <div className="flex">
