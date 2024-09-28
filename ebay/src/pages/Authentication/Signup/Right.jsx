@@ -7,15 +7,33 @@ import ErrorMsg from "../../CommonComponents/Error";
 
 export default function Right(props) {
   const [showError, setShowError] = useState(false);
-  const [msgErr, setMsgErr] = useState();
+  const [msgErr, setMsgErr] = useState({
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+  });
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Firstname is required"),
-    lastName: Yup.string().required("Lastname is required"),
+    firstName: Yup.string()
+      .required("Firstname is required")
+      .matches(/^[A-Za-z\s]+$/, {
+        message: "Firstname only accept alphabet",
+        excludeEmptyString: true,
+      }),
+    lastName: Yup.string()
+      .required("Lastname is required")
+      .matches(/^[A-Za-z\s]+$/, {
+        message: "Firstname only accept alphabet",
+        excludeEmptyString: true,
+      }),
     email: Yup.string()
       .required("Email is required")
       .email("Please enter an email"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(5, "Password must between 5-10 characters")
+      .max(10, "Password must between 5-10 characters"),
   });
 
   const firstNameRef = useRef();
@@ -34,14 +52,27 @@ export default function Right(props) {
         { firstName, lastName, email, password },
         { abortEarly: false }
       );
-      // setShowError((prev) => false);
+      setMsgErr({
+        firstName: null,
+        lastName: null,
+        email: null,
+        password: null,
+      });
     } catch (err) {
-      // setShowError((prev) => true);
-      setMsgErr(() => err.errors);
+      const errors = {
+        firstName: null,
+        lastName: null,
+        email: null,
+        password: null,
+      };
+
+      err.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+
+      setMsgErr(errors);
     }
-    console.log("hô sờ lê");
   };
-  console.log(msgErr);
   return (
     <div className="flex-grow">
       <div className=" w-[25.75rem] m-auto mt-6">
@@ -57,31 +88,34 @@ export default function Right(props) {
           </div>
         </div>
         <div className="flex justify-between my-4">
-          <Input
-            ref={firstNameRef}
-            className="w-[12.5rem] h-11 border border-stone-500 rounded-lg px-3 text-sm"
-            placeholder="First name"
-          />
-
-          {msgErr && (
-            <ErrorMsg
-              className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
-              msg={msgErr[0]}
+          <div className="w-[12.5rem]">
+            <Input
+              ref={firstNameRef}
+              className="w-[12.5rem] h-11 border border-stone-500 rounded-lg px-3 text-sm"
+              placeholder="First name"
             />
-          )}
 
-          <Input
-            ref={lastNameRef}
-            className="w-[12.5rem] h-11 border border-stone-500 rounded-lg px-3 text-sm"
-            placeholder="Last name"
-          />
-
-          {/* {msgErr[1] && (
-            <ErrorMsg
-              className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
-              msg={msgErr[1]}
+            {msgErr.firstName && (
+              <ErrorMsg
+                className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
+                msg={msgErr.firstName}
+              />
+            )}
+          </div>
+          <div className="w-[12.5rem]">
+            <Input
+              ref={lastNameRef}
+              className="w-[12.5rem] h-11 border border-stone-500 rounded-lg px-3 text-sm"
+              placeholder="Last name"
             />
-          )} */}
+
+            {msgErr.lastName && (
+              <ErrorMsg
+                className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
+                msg={msgErr.lastName}
+              />
+            )}
+          </div>
         </div>
         <Input
           ref={emailRef}
@@ -89,12 +123,12 @@ export default function Right(props) {
           placeholder="Email"
         />
 
-        {/* {msgErr[2] && (
+        {msgErr.email && (
           <ErrorMsg
-            className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
-            msg={msgErr[2]}
+            className="block w-[22rem] mt-3 text-sm text-red-600"
+            msg={msgErr.email}
           />
-        )} */}
+        )}
 
         <Input
           ref={passwordRef}
@@ -103,12 +137,12 @@ export default function Right(props) {
           type="password"
         />
 
-        {/* {msgErr[3] && (
+        {msgErr.password && (
           <ErrorMsg
-            className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
-            msg={msgErr[3]}
+            className="block w-[22rem] mt-3 text-sm text-red-600"
+            msg={msgErr.password}
           />
-        )} */}
+        )}
 
         <div className="w-full">
           <span className="text-[0.8rem] font-normal text-stone-500">

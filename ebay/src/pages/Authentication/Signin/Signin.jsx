@@ -12,7 +12,7 @@ export default function Signin() {
   const usernameValueRef = useRef();
   const [msgErr, setMsgErr] = useState("");
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Email is required"),
+    username: Yup.string().required("Username is required"),
   });
 
   const handleBtnClick = async () => {
@@ -70,7 +70,7 @@ export default function Signin() {
       <Input
         ref={usernameValueRef}
         className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg"
-        placeholder="Email or username"
+        placeholder="Username"
       />
       {showError && (
         <ErrorMsg
