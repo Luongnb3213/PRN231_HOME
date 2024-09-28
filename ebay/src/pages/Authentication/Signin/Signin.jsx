@@ -6,21 +6,50 @@ import { useRef } from "react";
 import { useState } from "react";
 import ErrorMsg from "../../CommonComponents/Error";
 import { useEffect } from "react";
+import axios from "axios";
+import { urlDev, requireHeader } from "../../../constant/url";
+import { BounceLoader } from "react-spinners";
+import LoadingComponent from "../../../Components/LoadingComponent";
 
 export default function Signin() {
   const [showError, setShowError] = useState(false);
   const usernameValueRef = useRef();
   const [msgErr, setMsgErr] = useState("");
+  const [errUsername, setErrUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
   });
 
   const handleBtnClick = async () => {
     const username = usernameValueRef.current.value;
-    console.log(username);
     try {
       await validationSchema.validate({ username });
       setShowError((prev) => false);
+
+      const params = {
+        Username: username,
+      };
+
+      const headers = {
+        "X-Header-Required": requireHeader,
+        "Content-Type": "application/json",
+      };
+
+      setIsLoading(true);
+      //call
+      axios
+        .get(urlDev, { params, headers })
+        .then((response) => {
+          setIsLoading(false);
+          setErrUsername(null);
+          console.log(response);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setErrUsername(error.response.data.Detail);
+        });
     } catch (err) {
       setShowError((prev) => true);
       setMsgErr(err.errors[0]);
@@ -29,6 +58,7 @@ export default function Signin() {
 
   return (
     <div className="relative h-screen pt-11">
+      {isLoading && <LoadingComponent />}
       <div className="logo-ebay w-[8.75rem] h-12 ml-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -76,6 +106,12 @@ export default function Signin() {
         <ErrorMsg
           className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
           msg={msgErr}
+        />
+      )}
+      {errUsername && (
+        <ErrorMsg
+          className="block m-auto w-[22rem] mt-3 text-sm text-red-600"
+          msg={errUsername}
         />
       )}
       <Button
