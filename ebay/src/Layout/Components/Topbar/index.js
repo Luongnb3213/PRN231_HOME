@@ -9,17 +9,17 @@ import Minicart from "./minicart";
 const Topbar = () => {
   const { Text, Link } = Typography;
   return (
-    <Flex justify="space-between" align="center">
+    <Flex justify="space-between" align="center" className="py-6">
       <Flex justify="center" align="center" gap={"10px"}>
         <Text>
           Hi!{" "}
-          <Link>
+          <div className="inline-block">
             <NavLink to="/signin">Sign in </NavLink>
-          </Link>{" "}
+          </div>{" "}
           or{" "}
-          <Link>
+          <div className="inline-block">
             <NavLink to="/signup">register</NavLink>
-          </Link>{" "}
+          </div>{" "}
         </Text>
         <Link
           style={{

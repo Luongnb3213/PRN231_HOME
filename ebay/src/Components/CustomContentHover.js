@@ -6,7 +6,7 @@ const CustomContentHover = ({ arrayLink, title, imagePromotion, type }) => {
     <div>
       {type === 'text' ? (
         <div>
-          {title && <Title> {title} </Title>}
+          {title && <Title level={4}> {title} </Title>}
           <ul>
             {arrayLink.map((item, index) => {
               return (
