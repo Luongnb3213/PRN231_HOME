@@ -11,7 +11,7 @@ const Search = () => {
     <div className="border-2 items-center py-3 relative pl-3 flex border-gray-800 rounded-[2.5rem] flex-1">
       <i className="fi fi-br-search text-[16px] absolute left-[13px]"></i>
       <input
-        className="flex-1 pl-14 text- text-[1.5rem] h-[20px] border-r border-r-gray-800"
+        className="flex-1 pl-14 text- text-[1.5rem] h-[20px] outline-none border-r border-r-gray-800"
         placeholder="Search for anything"
       />
       <ConfigProvider
