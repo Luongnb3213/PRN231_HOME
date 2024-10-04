@@ -8,56 +8,98 @@ import ErrorMsg from "../../CommonComponents/Error";
 import { useEffect } from "react";
 import axios from "axios";
 import { urlDev, requireHeader } from "../../../constant/url";
-import { BounceLoader } from "react-spinners";
 import LoadingComponent from "../../../Components/LoadingComponent";
 
 export default function Signin() {
   const [showError, setShowError] = useState(false);
   const usernameValueRef = useRef();
+  const passwordValueRef = useRef();
   const [msgErr, setMsgErr] = useState("");
   const [errUsername, setErrUsername] = useState("");
   const [isLoadingUsername, setIsLoadingUsername] = useState(false);
   const [isLoadingSignin, setIsLoadingSignin] = useState(false);
-  const [isUsernameYet, setIsUsernameYet] = useState(true);
+  const [isUsernameYet, setIsUsernameYet] = useState(false);
+  const [user, setUser] = useState(false);
+  const [username, setUsername] = useState();
+  const refRemember = useRef();
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
   });
 
-  const handleBtnClick = async () => {
-    const username = usernameValueRef.current.value;
-    try {
-      await validationSchema.validate({ username });
-      setShowError((prev) => false);
+  let handleBtnClick = null;
 
-      const params = {
-        Username: username,
-      };
+  if (!isUsernameYet) {
+    handleBtnClick = async () => {
+      const username = usernameValueRef.current.value;
+      try {
+        await validationSchema.validate({ username });
+        setShowError((prev) => false);
 
+        const params = {
+          Username: username,
+        };
+
+        const headers = {
+          "X-Header-Required": requireHeader,
+          "Content-Type": "application/json",
+        };
+
+        setIsLoadingUsername(true);
+        //call
+        axios
+          .get(urlDev + `/prn-authen/api/Auth/access_name`, { params, headers })
+          .then((response) => {
+            setIsLoadingUsername(false);
+            setErrUsername(null);
+            setIsUsernameYet(true);
+            setUsername(response.data.username);
+            console.log(response);
+            setUser({
+              username: response.data.username,
+              rememberMe: refRemember.current.checked,
+            });
+          })
+          .catch((error) => {
+            setIsLoadingUsername(false);
+            setIsUsernameYet(false);
+            setErrUsername(error.response.data.Detail);
+            setUser("hong có");
+          });
+      } catch (err) {
+        setShowError((prev) => true);
+        setMsgErr(err.errors[0]);
+      }
+    };
+  }
+
+  if (isUsernameYet) {
+    handleBtnClick = () => {
       const headers = {
         "X-Header-Required": requireHeader,
         "Content-Type": "application/json",
       };
-
-      setIsLoadingUsername(true);
-      //call
+      const params = {
+        ...user,
+        password: passwordValueRef.current.value,
+      };
+      console.log(params);
       axios
-        .get(urlDev, { params, headers })
+        .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
         .then((response) => {
-          setIsLoadingUsername(false);
-          setErrUsername(null);
-          setIsUsernameYet(true);
           console.log(response);
+          setShowError(false);
+          setMsgErr(null);
         })
         .catch((error) => {
-          setIsLoadingUsername(false);
-          setErrUsername(error.response.data.Detail);
+          console.log(error);
+          setShowError(true);
+          setMsgErr(error.response.data.Detail);
         });
-    } catch (err) {
-      setShowError((prev) => true);
-      setMsgErr(err.errors[0]);
-    }
-  };
+    };
+    // try {
+    // } catch (err) {}
+  }
 
   return (
     <>
@@ -107,7 +149,7 @@ export default function Signin() {
           <Input
             ref={usernameValueRef}
             className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg"
-            placeholder="Username"
+            placeholder="Username or email"
           />
           {showError && (
             <ErrorMsg
@@ -147,7 +189,11 @@ export default function Signin() {
             </div>
           </Button>
           <div className="flex items-center justify-center flex-row w-[8.75rem] m-auto mt-6">
-            <input type="checkbox" className="custom-checkbox mr-2 w-3 h-3" />
+            <input
+              ref={refRemember}
+              type="checkbox"
+              className="custom-checkbox mr-2 w-3 h-3"
+            />
             <span className="text-base">Stay signed in</span>
           </div>
           <div className="w-full border-gray-400 border-t absolute bottom-[4rem]">
@@ -196,16 +242,17 @@ export default function Signin() {
           </div>
           <header className="w-full text-center">
             <h1 className="text-[2.5rem] font-medium text-login">
-              Welcome, username
+              Welcome, {username}
             </h1>
             <p className="inline-block text-[0.9rem] mr-1">
               Enter your password to continue
             </p>
           </header>
           <Input
-            ref={usernameValueRef}
+            ref={passwordValueRef}
             className="px-4 text-sm border border-stone-500 m-auto block mt-5 w-[22rem] h-10 rounded-lg"
             placeholder="Password"
+            type="password"
           />
           {showError && (
             <ErrorMsg
