@@ -5,10 +5,15 @@ import * as Yup from "yup";
 import { useRef } from "react";
 import { useState } from "react";
 import ErrorMsg from "../../CommonComponents/Error";
-import { useEffect } from "react";
 import axios from "axios";
 import { urlDev, requireHeader } from "../../../constant/url";
 import LoadingComponent from "../../../Components/LoadingComponent";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
+const saveTokenToCookie = (accessToken) => {
+  Cookies.set("accessToken", accessToken, { expires: 7 });
+};
 
 export default function Signin() {
   const [showError, setShowError] = useState(false);
@@ -22,6 +27,7 @@ export default function Signin() {
   const [user, setUser] = useState(false);
   const [username, setUsername] = useState();
   const refRemember = useRef();
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
@@ -75,30 +81,41 @@ export default function Signin() {
 
   if (isUsernameYet) {
     handleBtnClick = () => {
-      const headers = {
-        "X-Header-Required": requireHeader,
-        "Content-Type": "application/json",
-      };
-      const params = {
-        ...user,
-        password: passwordValueRef.current.value,
-      };
-      console.log(params);
-      axios
-        .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
-        .then((response) => {
-          console.log(response);
-          setShowError(false);
-          setMsgErr(null);
-        })
-        .catch((error) => {
-          console.log(error);
-          setShowError(true);
-          setMsgErr(error.response.data.Detail);
-        });
+      try {
+        if (passwordValueRef.current.value.trim() !== "") {
+          setErrUsername(null);
+          const headers = {
+            "X-Header-Required": requireHeader,
+            "Content-Type": "application/json",
+          };
+          const params = {
+            ...user,
+            password: passwordValueRef.current.value,
+          };
+          setIsLoadingSignin(true);
+
+          axios
+            .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
+            .then((response) => {
+              console.log(response);
+              setShowError(false);
+              setMsgErr(null);
+              setIsLoadingSignin(false);
+              const token = response.data.accessToken;
+              saveTokenToCookie(token);
+              navigate("/");
+            })
+            .catch((error) => {
+              console.log(error);
+              setShowError(true);
+              setIsLoadingSignin(false);
+              setMsgErr(error.response.data.Detail);
+            });
+        } else {
+          setErrUsername("Password is required");
+        }
+      } catch (error) {}
     };
-    // try {
-    // } catch (err) {}
   }
 
   return (
