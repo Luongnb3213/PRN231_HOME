@@ -4,9 +4,18 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useRef } from "react";
 import ErrorMsg from "../../CommonComponents/Error";
+import axios from "axios";
+import { urlDev } from "../../../constant/url";
+import { requireHeader } from "../../../constant/url";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
+const saveTokenToCookie = (accessToken) => {
+  Cookies.set("accessToken", accessToken, { expires: 7 });
+};
 
 export default function Right(props) {
-  const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
   const [msgErr, setMsgErr] = useState({
     firstName: null,
     lastName: null,
@@ -58,6 +67,47 @@ export default function Right(props) {
         email: null,
         password: null,
       });
+
+      const register = {
+        firstName,
+        lastName,
+        email,
+        password,
+      };
+
+      const headers = {
+        "X-Header-Required": requireHeader,
+        "Content-Type": "application/json",
+      };
+      console.log(requireHeader);
+
+      axios
+        .post(`${urlDev}/prn-authen/api/Auth/register`, register, { headers })
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            const params = {
+              username: response.data.username,
+              password: register.password,
+              rememberMe: false,
+            };
+
+            axios
+              .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
+              .then((response) => {
+                const token = response.data.accessToken;
+                saveTokenToCookie(token);
+                navigate("/");
+              })
+              .catch((error) => {
+                console.log(error);
+                setMsgErr(error.response.data.Detail);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (err) {
       const errors = {
         firstName: null,
