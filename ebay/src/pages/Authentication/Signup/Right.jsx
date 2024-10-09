@@ -16,6 +16,7 @@ const saveTokenToCookie = (accessToken) => {
 
 export default function Right(props) {
   const navigate = useNavigate();
+  const [msgExist, setMsgExist] = useState("");
   const [msgErr, setMsgErr] = useState({
     firstName: null,
     lastName: null,
@@ -79,34 +80,29 @@ export default function Right(props) {
         "X-Header-Required": requireHeader,
         "Content-Type": "application/json",
       };
-      console.log(requireHeader);
 
       axios
         .post(`${urlDev}/prn-authen/api/Auth/register`, register, { headers })
         .then((response) => {
-          console.log(response);
-          if (response.status === 200) {
-            const params = {
-              username: response.data.username,
-              password: register.password,
-              rememberMe: false,
-            };
+          const params = {
+            username: response.data.response.username,
+            password: register.password,
+            rememberMe: false,
+          };
 
-            axios
-              .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
-              .then((response) => {
-                const token = response.data.accessToken;
-                saveTokenToCookie(token);
-                navigate("/");
-              })
-              .catch((error) => {
-                console.log(error);
-                setMsgErr(error.response.data.Detail);
-              });
-          }
+          axios
+            .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
+            .then((response) => {
+              const token = response.data.response.accessToken;
+              saveTokenToCookie(token);
+              navigate("/");
+            })
+            .catch((error) => {
+              // setMsgErr(error.response.data.Detail);
+            });
         })
         .catch((err) => {
-          console.log(err);
+          setMsgExist(err.response.data.Detail);
         });
     } catch (err) {
       const errors = {
@@ -219,6 +215,13 @@ export default function Right(props) {
             User Privacy Notice.
           </span>
         </div>
+
+        {msgExist && (
+          <ErrorMsg
+            className="block w-[22rem] mt-3 text-sm text-red-600"
+            msg={msgExist}
+          />
+        )}
 
         <Button
           onClick={handleBtnClick}

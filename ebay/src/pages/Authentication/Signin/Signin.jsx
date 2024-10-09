@@ -59,10 +59,9 @@ export default function Signin() {
             setIsLoadingUsername(false);
             setErrUsername(null);
             setIsUsernameYet(true);
-            setUsername(response.data.username);
-            console.log(response);
+            setUsername(response.data.response.username);
             setUser({
-              username: response.data.username,
+              username: response.data.response.username,
               rememberMe: refRemember.current.checked,
             });
           })
@@ -70,6 +69,7 @@ export default function Signin() {
             setIsLoadingUsername(false);
             setIsUsernameYet(false);
             setErrUsername(error.response.data.Detail);
+
             setUser("hong có");
           });
       } catch (err) {
@@ -97,16 +97,16 @@ export default function Signin() {
           axios
             .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
             .then((response) => {
-              console.log(response);
               setShowError(false);
               setMsgErr(null);
               setIsLoadingSignin(false);
-              const token = response.data.accessToken;
+              const token = response.data.response.accessToken;
+              console.log(token);
+
               saveTokenToCookie(token);
               navigate("/");
             })
             .catch((error) => {
-              console.log(error);
               setShowError(true);
               setIsLoadingSignin(false);
               setMsgErr(error.response.data.Detail);
