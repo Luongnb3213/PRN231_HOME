@@ -56,10 +56,12 @@ export default function Signin() {
         axios
           .get(urlDev + `/prn-authen/api/Auth/access_name`, { params, headers })
           .then((response) => {
+            console.log(response);
+
             setIsLoadingUsername(false);
             setErrUsername(null);
             setIsUsernameYet(true);
-            setUsername(response.data.response.username);
+            setUsername(response.data.response.fullName);
             setUser({
               username: response.data.response.username,
               rememberMe: refRemember.current.checked,
@@ -75,6 +77,8 @@ export default function Signin() {
       } catch (err) {
         setShowError((prev) => true);
         setMsgErr(err.errors[0]);
+        setIsLoadingUsername(false);
+        setErrUsername(null);
       }
     };
   }
