@@ -23,7 +23,7 @@ const ShopCategory = () => {
   return (
     <div className="max-w-[50px] cursor-pointer">
       <Popover content={content} placement="leftBottom" trigger="click">
-        <p className='text-xs'>Shop by category </p>
+        <p className='text-xs font-normal'>Shop by category </p>
       </Popover>
     </div>
   );
