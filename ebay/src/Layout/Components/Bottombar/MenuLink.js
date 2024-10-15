@@ -29,7 +29,7 @@ const MenuLink = ({ title, subMenu }) => {
       overlayStyle={{ position: "fixed", left: 0, right:0, width: "100%", maxWidth: "100%" }}
       className="cursor-pointer"
     >
-      <a href="https://example.com/" className='font-normal text-xl leading-none'> {title} </a>
+      <a href="https://example.com/" className='font-normal text-xs leading-none'> {title} </a>
     </Popover>
   );
 };

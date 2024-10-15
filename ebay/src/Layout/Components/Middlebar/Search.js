@@ -44,7 +44,6 @@ const Search = () => {
       </ConfigProvider>
     </div>
     <Button type="primary" style={{ padding: '25px 20px', borderRadius: '4rem', minWidth: '168px',fontWeight: '600'}} size="large">Search</Button>
-      <a classname="" href="https://example.com/">Advanced</a>
     </>
     
     

@@ -5,7 +5,7 @@ const Notification = () => {
    
   const content = (
     <div>
-      <p className='text-xl px-4 py-11 text-gray-400'>There are no new notifications.</p>
+      <p className='text-xs px-4 py-11 text-gray-400'>There are no new notifications.</p>
     </div>
   );
 

@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Slideshow from './Slideshow';
+import CollectionList from './CollectionList';
 
 const Home = () => {
   return (
-    <div>
-        THIS IS HOMEPAGE
+    <div className='mt-4'>
+      <Slideshow />
+      <CollectionList />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
