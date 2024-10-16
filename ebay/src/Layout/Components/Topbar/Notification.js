@@ -11,7 +11,7 @@ const Notification = () => {
 
 
   return (
-    <Popover content={content} trigger="click" placement='topRight' className="cursor-pointer">
+    <Popover content={content} trigger="click" placement='topRight' className="cursor-pointer text-xs">
       Notification
     </Popover>
   );

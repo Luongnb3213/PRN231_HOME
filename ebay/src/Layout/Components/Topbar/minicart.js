@@ -20,7 +20,7 @@ const Minicart = () => {
       content={content}
       trigger="click"
       placement="topRight"
-      className="cursor-pointer"
+      className="cursor-pointer text-xs"
     >
       Minicart
     </Popover>

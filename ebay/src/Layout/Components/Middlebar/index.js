@@ -4,7 +4,7 @@ import ShopCategory from './ShopCategory'
 import Search from './Search';
 const Middlebar = () => {
   return (
-    <Flex className="pb-5" align='center' gap={5}>
+    <Flex className="py-5" align='center' gap={5}>
       <a href="/" style={{height: '48px', width: "117px"}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

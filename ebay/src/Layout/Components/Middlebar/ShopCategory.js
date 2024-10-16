@@ -21,9 +21,9 @@ const ShopCategory = () => {
   );
 
   return (
-    <div className="max-w-[50px] cursor-pointer">
+    <div className="max-w-[50px] cursor-pointer ml-3 mr-3">
       <Popover content={content} placement="leftBottom" trigger="click">
-        <p className='text-xs font-normal'>Shop by category </p>
+        <p className='text-xs font-normal text-gray-500'>Shop by category </p>
       </Popover>
     </div>
   );
