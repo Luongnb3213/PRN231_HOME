@@ -24,10 +24,16 @@ const DetailRight = () => {
           type="number"
           name=""
           id=""
-          className="w-20 h-12 appearance-none rounded-lg pl-4"
+          className="w-20 h-12 appearance-none rounded-lg pl-4 border-2 bg-stone-100"
         />
         <div className="text-stone-800">2 available</div>
-        <div className="text-red-700">47 sold</div>
+        <div className="text-red-600">47 sold</div>
+      </div>
+      <div className="bg-[#3665F3] p-4 text-white text-center rounded-full mt-6 cursor-pointer hover:brightness-95">
+        Buy It Now
+      </div>
+      <div className="bg-white p-4 text-blue-500 text-center rounded-full mt-2 border-blue-500 border cursor-pointer hover:opacity-90">
+        Add to cart
       </div>
     </>
   );
