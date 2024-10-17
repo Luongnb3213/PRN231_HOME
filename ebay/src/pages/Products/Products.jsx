@@ -1,9 +1,18 @@
 import Right from "./Right";
 import Left from "./Left";
+import { ConfigProvider } from "antd";
 
 const Products = () => {
   return (
-    <div className="w-full h-full">
+    <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: "#191919",
+        colorBgTextHover: "#1677ff",
+      },
+    }}
+  >
+ <div className="w-full h-full">
       <img
         src="/productsPic/vivid-blurred-colorful-background.jpg"
         alt=""
@@ -18,6 +27,9 @@ const Products = () => {
         </div>
       </div>
     </div>
+
+  </ConfigProvider>
+   
   );
 };
 
