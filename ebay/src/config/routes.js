@@ -5,6 +5,8 @@ const routesConfig = {
   products: "/products",
   detail: "/detail",
   createProduct: '/seller/createProduct',
+  Cart: '/cart',
+
 };
 
 export default routesConfig;
