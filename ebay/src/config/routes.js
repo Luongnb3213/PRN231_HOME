@@ -6,7 +6,7 @@ const routesConfig = {
   detail: "/detail",
   createProduct: '/seller/createProduct',
   Cart: '/cart',
-
+  Checkout: '/checkout',
 };
 
 export default routesConfig;
