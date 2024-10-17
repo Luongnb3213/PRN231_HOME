@@ -9,7 +9,7 @@ const Watchlist = () => {
   );
 
   return (
-    <Popover content={content} trigger="click" placement='topRight' className="cursor-pointer text-xs" >
+    <Popover content={content} trigger="click" placement='topRight' className="cursor-pointer text-xs " >
       Watchlist
     </Popover>
   );
