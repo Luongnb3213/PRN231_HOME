@@ -8,6 +8,7 @@ import DetailProduct from "../pages/DetailProduct/DetailProduct.jsx";
 import CreateProduct from "../pages/Seller/CreateProduct.js";
 import Cart from "../pages/Cart/Cart.js";
 import Checkout from "../pages/Checkout/Checkout.js";
+import HomeSeller from "../pages/Seller/Home/HomeSeller.js";
 
 const publicRoutes = [
   { path: routesConfig.root, component: Home },
@@ -17,7 +18,8 @@ const publicRoutes = [
   { path: routesConfig.detail, component: DetailProduct },
   { path: routesConfig.createProduct , component: CreateProduct},
   { path: routesConfig.Cart , component: Cart},
-  { path: routesConfig.Checkout , component: Checkout}
+  { path: routesConfig.Checkout , component: Checkout},
+  { path: routesConfig.HomeSeller , component: HomeSeller}
 
 ];
 

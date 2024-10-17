@@ -7,6 +7,7 @@ const routesConfig = {
   createProduct: '/seller/createProduct',
   Cart: '/cart',
   Checkout: '/checkout',
+  HomeSeller: '/homeseller',
 };
 
 export default routesConfig;
