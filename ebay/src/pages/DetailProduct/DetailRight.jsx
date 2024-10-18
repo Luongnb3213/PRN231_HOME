@@ -24,7 +24,7 @@ const DetailRight = () => {
           type="number"
           name=""
           id=""
-          className="w-20 h-12 appearance-none rounded-lg pl-4 border-2 bg-stone-100"
+          className="w-20 h-12 appearance-none rounded-lg pl-4 border-2 bg-stone-100 border-stone-400"
         />
         <div className="text-stone-800">2 available</div>
         <div className="text-red-600">47 sold</div>

@@ -34,44 +34,95 @@ const DetailLeft = () => {
   };
 
   return (
-    <div className="w-full grid grid-cols-8 gap-8">
-      <div className="col-span-1">
+    <div className="w-full bg-red-400 grid grid-cols-8 gap-8">
+      <div className="col-span-1 w-full">
         <Swiper
-          style={{ height: "100%" }}
+          style={{ height: "100%", width: "100%" }}
           onSwiper={setThumbsSwiper}
           spaceBetween={10}
-          slidesPerView={3}
+          slidesPerView={10}
           autoHeight={true}
           direction="vertical"
-          //   watchSlidesProgress
+          watchSlidesProgress={true}
         >
-          <SwiperSlide data-index={0} onMouseEnter={hoverSwiper}>
+          <SwiperSlide
+            data-index={0}
+            onMouseEnter={hoverSwiper}
+            style={{
+              height: "60px",
+              width: "100px",
+              backgroundColor: "black",
+            }}
+          >
             <img
+              style={{ height: "100%", objectFit: "contain" }}
               src="/productsPic/vivid-blurred-colorful-background.jpg"
               alt="Thumbnail 1"
             />
           </SwiperSlide>
-          <SwiperSlide data-index={1} onMouseEnter={hoverSwiper}>
+          <SwiperSlide
+            data-index={1}
+            onMouseEnter={hoverSwiper}
+            style={{
+              height: "60px",
+              width: "100px",
+              backgroundColor: "black",
+            }}
+          >
             <img
+              style={{ height: "100%", objectFit: "contain" }}
               src="/productsPic/759819a4cce0f0310e96c7c1b4167e7e.jpg"
               alt="Thumbnail 2"
             />
           </SwiperSlide>
-          <SwiperSlide data-index={2} onMouseEnter={hoverSwiper}>
+          <SwiperSlide
+            data-index={2}
+            onMouseEnter={hoverSwiper}
+            style={{
+              height: "60px",
+              width: "100px",
+              backgroundColor: "black",
+            }}
+          >
             <img
+              style={{ height: "100%", objectFit: "contain" }}
               src="/productsPic/istockphoto-1349361409-612x612.jpg"
               alt="Thumbnail 3"
             />
           </SwiperSlide>
-          <SwiperSlide data-index={3} onMouseEnter={hoverSwiper}>
+          <SwiperSlide
+            data-index={3}
+            onMouseEnter={hoverSwiper}
+            style={{
+              height: "60px",
+              width: "100px",
+              backgroundColor: "black",
+            }}
+          >
             <img
+              style={{ height: "100%", objectFit: "contain" }}
               src="/productsPic/istockphoto-1435000968-612x612.jpg"
+              alt="Thumbnail 3"
+            />
+          </SwiperSlide>
+          <SwiperSlide
+            data-index={4}
+            onMouseEnter={hoverSwiper}
+            style={{
+              height: "60px",
+              width: "100px",
+              backgroundColor: "black",
+            }}
+          >
+            <img
+              style={{ height: "100%", objectFit: "contain" }}
+              src="/productsPic/Gradient_Background_Example.jpg"
               alt="Thumbnail 3"
             />
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="col-span-7">
+      <div className="col-span-7 w-full h-full">
         <Swiper
           onSwiper={(swiper) => {
             mainSwiper.current = swiper;
@@ -115,6 +166,11 @@ const DetailLeft = () => {
                 src="/productsPic/istockphoto-1435000968-612x612.jpg"
                 alt=""
               />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="swiper-zoom-container">
+              <img src="/productsPic/Gradient_Background_Example.jpg" alt="" />
             </div>
           </SwiperSlide>
         </Swiper>
