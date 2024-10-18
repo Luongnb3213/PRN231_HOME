@@ -72,7 +72,7 @@ const Cart = () => {
                 <img
                   src="https://i.ebayimg.com/images/g/jR4AAOSw2ehm2yUr/s-l225.webp"
                   alt="Product"
-                  className="w-28 h-28  object-cover rounded-lg mr-4"
+                  className="w-32 h-32  object-cover rounded-lg mr-4"
                 />
               </div>
 
@@ -82,13 +82,15 @@ const Cart = () => {
                 <p className="text-gray-500">{item.size}</p>
                 <p className="text-gray-500">{item.shipping}</p>
               </div>
+
+              <div></div>
               {/* Price & Qty */}
               <div className="text-right">
                 <p className="text-lg font-semibold text-gray-800">${item.price.toFixed(2)}</p>
                 <p className="text-sm text-gray-500">+ ${item.shippingPrice.toFixed(2)} Shipping</p>
                 <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                 {/* Save & Remove */}
-                <div className="mt-2">
+                <div className="mt-1">
                   <Button type="link" className="text-sm text-gray-500">Save for later</Button>
                   <Button type="link" className="text-sm text-red-500">Remove</Button>
                 </div>
