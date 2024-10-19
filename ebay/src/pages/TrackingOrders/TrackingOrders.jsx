@@ -18,9 +18,9 @@ const TrackingOrders = () => {
         </ul>
       </div>
       <div className="w-full h-full bg-stone-300 col-span-5 p-4">
-        <OrderCard status={0} />
-        <OrderCard status={1} />
-        <OrderCard status={2} />
+        <OrderCard status={0} role={"customer"} />
+        <OrderCard status={1} role={"customer"} />
+        <OrderCard status={2} role={"customer"} />
       </div>
     </div>
   );

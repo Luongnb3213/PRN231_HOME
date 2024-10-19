@@ -5,6 +5,8 @@ const routesConfig = {
   products: "/products",
   detail: "/detail",
   createProduct: "/seller/createProduct",
+  sellerTracking: "/seller/trackingorders",
+  Analytics: "/seller/analytics",
   Cart: "/cart",
   Checkout: "/checkout",
   HomeSeller: "/homeseller",

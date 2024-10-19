@@ -1,13 +1,21 @@
 import { NavLink } from "react-router-dom";
 
-const OrderCard = ({ status }) => {
+const OrderCard = ({ status, role }) => {
   return (
     <div className="w-full bg-white p-4 my-1">
       <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <i className="fi fi-rs-shop"></i>
-          <div>Shop's name</div>
-        </div>
+        {role === "customer" && (
+          <div className="flex items-center gap-2">
+            <i className="fi fi-rs-shop"></i>
+            <div>Shop's name</div>
+          </div>
+        )}
+        {role === "seller" && (
+          <div className="flex items-center gap-2">
+            <div>Customer's name</div>
+          </div>
+        )}
+
         {status === 0 && (
           <div className="text-blue-600 font-sans font-semibold">
             Processing...
@@ -24,7 +32,7 @@ const OrderCard = ({ status }) => {
           </div>
         )}
       </div>
-      <NavLink>
+      <NavLink to={"/detail"}>
         <div className="mt-2">
           <div className="flex justify-between">
             <div className="flex justify-between">
