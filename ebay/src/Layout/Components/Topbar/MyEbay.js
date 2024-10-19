@@ -1,57 +1,62 @@
-import React from 'react';
-import { Popover } from 'antd';
-import CustomContentHover from '../../../Components/CustomContentHover';
+import React from "react";
+import { Popover } from "antd";
+import CustomContentHover from "../../../Components/CustomContentHover";
 
 const MyEbay = () => {
   const EBayContent = {
     arrayLink: [
       {
-        content: 'Summary',
-        url: '#',
+        content: "Tracking Orders",
+        url: "/trackingorders",
       },
       {
-        content: 'Recently Viewed',
-        url: '#',
+        content: "Summary",
+        url: "#",
       },
       {
-        content: 'Bids/Offers',
-        url: '#',
+        content: "Recently Viewed",
+        url: "#",
       },
       {
-        content: 'Watchlist',
-        url: '#',
+        content: "Bids/Offers",
+        url: "#",
       },
       {
-        content: 'Purchase History',
-        url: '#',
+        content: "Watchlist",
+        url: "#",
       },
       {
-        content: 'Buy Again',
-        url: '#',
+        content: "Purchase History",
+        url: "#",
       },
       {
-        content: 'Selling',
-        url: '#',
+        content: "Buy Again",
+        url: "#",
       },
       {
-        content: 'Saved Searchers',
-        url: '#',
+        content: "Selling",
+        url: "#",
       },
       {
-        content: 'Saved Sellers',
-        url: '#',
+        content: "Saved Searchers",
+        url: "#",
       },
       {
-        content: 'Messages',
-        url: '#',
+        content: "Saved Sellers",
+        url: "#",
+      },
+      {
+        content: "Messages",
+        url: "#",
       },
     ],
   };
-  const content = <CustomContentHover arrayLink={EBayContent.arrayLink} type="text" />;
+  const content = (
+    <CustomContentHover arrayLink={EBayContent.arrayLink} type="text" />
+  );
 
   return (
     <Popover
-    
       content={content}
       trigger="click"
       placement="topRight"
