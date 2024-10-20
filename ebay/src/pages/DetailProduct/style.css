@@ -51,7 +51,9 @@
 .thumb-swiper .swiper-slide {
     height: 60px !important;
     width: 100% !important;
-    background-color: black;
+    border: solid 1px rgb(193, 193, 193);
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 .thumb-swiper .swiper-slide img {

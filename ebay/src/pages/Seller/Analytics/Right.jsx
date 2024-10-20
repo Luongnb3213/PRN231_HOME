@@ -1,19 +1,31 @@
-import { useState } from "react";
-const Right = (month, monthArray) => {
-  const [selectedOption, setSelectedOption] = useState("year");
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value); // Cập nhật giá trị khi chọn radio
-  };
+import Control from "./Control";
+
+const Right = ({ monthArray, handleChange, mode }) => {
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth();
+
+  let control = <Control currentYear={currentYear} mode={mode} />;
+  if (mode === "month") {
+    control = (
+      <Control
+        currentMonth={currentMonth}
+        monthArray={monthArray}
+        mode={mode}
+      />
+    );
+  }
+
   return (
-    <div className="bg-stone-400 flex-1 p-10">
-      <div>Filter by</div>
-      <div>
+    <div className="flex-1 p-10">
+      <div className="text-xl">Filter by</div>
+      <div className="scale-95 mx-4 my-4">
         <input
           type="radio"
           name=""
           id="radioYear"
           value="year"
-          checked={selectedOption === "year"}
+          checked={mode === "year"}
           onChange={handleChange}
           className="select-none cursor-pointer"
         />
@@ -22,13 +34,13 @@ const Right = (month, monthArray) => {
           Year
         </label>
       </div>
-      <div>
+      <div className="scale-95 mx-4 my-4">
         <input
           type="radio"
           name=""
           id="radioMonth"
           value="month"
-          checked={selectedOption === "month"}
+          checked={mode === "month"}
           onChange={handleChange}
           className="select-none cursor-pointer"
         />
@@ -37,6 +49,7 @@ const Right = (month, monthArray) => {
           Month
         </label>
       </div>
+      {control}
     </div>
   );
 };

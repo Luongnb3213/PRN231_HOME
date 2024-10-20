@@ -1,6 +1,5 @@
 import MonthlyReport from "./MonthlyReport";
 let monthArray = [
-  "Zero",
   "January",
   "February",
   "March",

@@ -1,21 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/zoom';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/zoom";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // import "../DetailProduct/style.css";
-import { Navigation, Mousewheel, Keyboard, Zoom, Thumbs } from 'swiper/modules';
-import SwiperCore from 'swiper';
+import { Navigation, Mousewheel, Keyboard, Zoom, Thumbs } from "swiper/modules";
+import SwiperCore from "swiper";
 
-import '../DetailProduct/style.css';
+import "../DetailProduct/style.css";
 
 // Import Swiper styles
-import 'swiper/css';
+import "swiper/css";
 
 SwiperCore.use([Navigation, Thumbs]);
 const DetailLeft = () => {
@@ -28,10 +28,10 @@ const DetailLeft = () => {
 
   return (
     <div>
-      <div className="w-full flex  bg-red-500 gap-4">
+      <div className="w-full flex gap-4">
         <div className="w-[60px] thumb-swiper">
           <Swiper
-            style={{ height: '100%' }}
+            style={{ height: "100%" }}
             onSwiper={(thumbsSwiper) => {
               setThumbsSwiper(thumbsSwiper);
             }}
@@ -73,12 +73,15 @@ const DetailLeft = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className=" h-[35rem]" style={{ width: 'calc(100% - 60px - 1rem)' }}>
+        <div
+          className=" h-[35rem]"
+          style={{ width: "calc(100% - 60px - 1rem)" }}
+        >
           <Swiper
             onSwiper={(swiper) => {
               mainSwiper.current = swiper;
             }}
-            onSlideChange={() => console.log('slide change')}
+            onSlideChange={() => console.log("slide change")}
             thumbs={{ swiper: thumbsSwiper }}
             slidesPerView={1}
             cssMode={true}
@@ -86,7 +89,7 @@ const DetailLeft = () => {
             mousewheel={{ sensitivity: 0.5, thresholdDelta: 1 }}
             keyboard={true}
             zoom={true}
-            modules={[Navigation, Zoom]}
+            modules={[Navigation, Zoom, Keyboard]}
             className="mySwiper"
           >
             <SwiperSlide>
