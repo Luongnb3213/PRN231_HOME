@@ -1,18 +1,17 @@
-import Control from "./Control";
+import MonthControl from "./MonthControl";
+import YearControl from "./YearControl";
 
-const Right = ({ monthArray, handleChange, mode }) => {
-  let currentDate = new Date();
-  let currentYear = currentDate.getFullYear();
-  let currentMonth = currentDate.getMonth();
-
-  let control = <Control currentYear={currentYear} mode={mode} />;
+const Right = ({
+  monthArray,
+  handleChange,
+  mode,
+  currentMonth,
+  currentYear,
+}) => {
+  let control = <YearControl currentYear={currentYear} />;
   if (mode === "month") {
     control = (
-      <Control
-        currentMonth={currentMonth}
-        monthArray={monthArray}
-        mode={mode}
-      />
+      <MonthControl currentMonth={currentMonth} monthArray={monthArray} />
     );
   }
 

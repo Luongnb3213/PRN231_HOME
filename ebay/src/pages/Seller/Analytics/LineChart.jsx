@@ -20,9 +20,9 @@ ChartJS.register(
   Legend
 );
 
-const LineChart = ({ dataMonth, dataRevenue }) => {
+const LineChart = ({ dataLabel, dataRevenue }) => {
   const data = {
-    labels: dataMonth,
+    labels: dataLabel,
     datasets: [
       {
         label: "Sales",

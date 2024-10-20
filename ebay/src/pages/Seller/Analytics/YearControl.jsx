@@ -2,35 +2,13 @@ import { useEffect, useState } from "react";
 
 let exampleYear = [2021, 2022, 2023, 2024];
 
-const Control = ({ currentYear, currentMonth, monthArray, mode }) => {
-  const [selected, setSelected] = useState();
-
-  useEffect(() => {
-    if (currentYear) {
-      let initateYear = exampleYear.find((item) => item === currentYear);
-      console.log(initateYear);
-
-      setSelected(initateYear);
-    }
-    if (currentMonth) {
-      let initateMonth = monthArray.find((item) => item === currentMonth);
-      console.log(initateMonth);
-
-      setSelected(initateMonth);
-    }
-  }, [mode]);
+const YearControl = ({ currentYear }) => {
+  const [selected, setSelected] = useState(currentYear);
 
   const handleSelectChange = (e) => {
     setSelected(() => e.target.value);
   };
 
-  let datas;
-  if (currentYear) {
-    datas = exampleYear;
-  }
-  if (currentMonth) {
-    datas = monthArray;
-  }
   return (
     <div className="flex justify-between items-end">
       <div>
@@ -43,8 +21,9 @@ const Control = ({ currentYear, currentMonth, monthArray, mode }) => {
           id=""
           className="outline-none w-40 border border-stone-500 p-2"
           onChange={(e) => handleSelectChange(e)}
+          value={selected}
         >
-          {datas.map((item, index) => {
+          {exampleYear.map((item, index) => {
             return (
               <option key={index} value={item}>
                 {item}
@@ -57,4 +36,4 @@ const Control = ({ currentYear, currentMonth, monthArray, mode }) => {
   );
 };
 
-export default Control;
+export default YearControl;

@@ -56,7 +56,7 @@ const SellerLayout = ({ children }) => {
               </div>
             </NavLink>
             <NavLink
-              to={"/seller/myproducts"}
+              to={"/seller/myProducts"}
               className={({ isActive }) => (isActive ? active : "")}
             >
               <div
