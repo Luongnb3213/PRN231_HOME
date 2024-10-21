@@ -14,7 +14,7 @@ const DetailRight = () => {
           alt=""
         />
         <div className="underline cursor-pointer hover:text-stone-700">
-          <NavLink>Hello world</NavLink>
+          <NavLink to={"/seller/shop"}>Hello world</NavLink>
         </div>
       </div>
       <div className="font-sans font-bold text-2xl mb-8">VND 150,000</div>

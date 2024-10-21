@@ -8,6 +8,7 @@ const routesConfig = {
   sellerTracking: "/seller/trackingorders",
   myProducts: "/seller/myProducts",
   Analytics: "/seller/analytics",
+  Shop: "/seller/shop",
   Cart: "/cart",
   Checkout: "/checkout",
   HomeSeller: "/homeseller",

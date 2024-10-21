@@ -13,6 +13,7 @@ import TrackingOrders from "../pages/TrackingOrders/TrackingOrders.jsx";
 import SellerTracking from "../pages/Seller/TrackingOrders/SellerTracking.jsx";
 import Analytics from "../pages/Seller/Analytics/Analytics.jsx";
 import MyProducts from "../pages/Seller/MyProducts/MyProducts.jsx";
+import Shop from "../pages/Seller/Shop/Shop.jsx";
 
 const publicRoutes = [
   { path: routesConfig.root, component: Home },
@@ -41,6 +42,10 @@ const publicRoutes = [
     path: routesConfig.Analytics,
     component: Analytics,
     layout: "seller-layout",
+  },
+  {
+    path: routesConfig.Shop,
+    component: Shop,
   },
   {
     path: routesConfig.myProducts,
