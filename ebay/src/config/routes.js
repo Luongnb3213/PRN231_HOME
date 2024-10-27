@@ -2,7 +2,7 @@ const routesConfig = {
   root: "/",
   signin: "/signin",
   signup: "/signup",
-  products: "/products",
+  products: "/products/:slug",
   detail: "/detail",
   createProduct: "/seller/createProduct",
   sellerTracking: "/seller/trackingorders",

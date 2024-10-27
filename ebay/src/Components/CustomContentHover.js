@@ -1,12 +1,15 @@
-import Title from 'antd/es/typography/Title';
-import React from 'react';
+import Title from "antd/es/typography/Title";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const CustomContentHover = ({ arrayLink, title, imagePromotion, type }) => {
   return (
     <div>
-      {type === 'text' ? (
+      {type === "text" ? (
         <div>
-          {title && <Title level={4}> {title} </Title>}
+          <NavLink to={""}>
+            {title && <Title level={4}> {title} </Title>}
+          </NavLink>
           <ul>
             {arrayLink.map((item, index) => {
               return (
