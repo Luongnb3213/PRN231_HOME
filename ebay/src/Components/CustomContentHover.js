@@ -1,6 +1,5 @@
 import Title from "antd/es/typography/Title";
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 const CustomContentHover = ({
   arrayLink,
@@ -25,7 +24,7 @@ const CustomContentHover = ({
             {arrayLink.map((item, index) => {
               return (
                 <li className="p-1" key={index}>
-                  <a href={item.url}>{item.content}</a>
+                  <a href={`${item.url}`}>{item.content}</a>
                 </li>
               );
             })}

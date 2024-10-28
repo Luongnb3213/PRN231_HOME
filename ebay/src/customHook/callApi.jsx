@@ -29,7 +29,11 @@ customAxios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-const requestAPI = async (method, url, data = null, headers = {}) => {
+const requestAPI = async (method, url, data = null) => {
+  const headers = {
+    "X-Header-Required": requireHeader,
+    "Content-Type": "application/json",
+  };
   try {
     const response = await customAxios({
       method: method,
