@@ -7,6 +7,7 @@ import { requireHeader } from "../../../constant/url";
 
 const ShopCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
+  // const [slugCategory, setSlugCategory] = useState([]);
   const headers = {
     "X-Header-Required": requireHeader,
     "Content-Type": "application/json",
@@ -21,15 +22,20 @@ const ShopCategory = () => {
         headers
       );
 
+      // console.log(data.response.shopBy);
+
       setCategoryData((oldData) => {
         return data?.response.shopBy.map((item) => {
+          console.log(item);
+
           return {
             type: "text",
             title: item.categoryName,
-            arrayLink: item.children.map((item) => {
+            arrayLink: item.children.map((child) => {
               return {
-                content: item.categoryName,
-                url: "#",
+                content: child.categoryName,
+                // url: `/products/${child.}/${child.categoryID}`,
+                url: `/products/${item.categoryName}/${child.categoryName}`,
               };
             }),
           };
@@ -39,15 +45,17 @@ const ShopCategory = () => {
 
     fetchData();
   }, []);
-  console.log(categoryData);
 
   const content = (
     <Row gutter={10} className="pt-10 px-6 pb-6 rounded-3xl max-w-[800px]">
       {categoryData?.map((item, index) => {
+        // console.log(item);
+
         let colSpan = item.type === "text" ? 8 : 6;
         return (
           <Col key={index} className="gutter-row mb-8" span={colSpan}>
             <CustomContentHover
+              slug={item.title}
               title={item.title}
               arrayLink={item.arrayLink}
               type={item.type}

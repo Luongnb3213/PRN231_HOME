@@ -20,6 +20,7 @@ const publicRoutes = [
   { path: routesConfig.signin, component: Signin, layout: "no-layout" },
   { path: routesConfig.signup, component: Signup, layout: "no-layout" },
   { path: routesConfig.products, component: Products },
+  { path: routesConfig.productsChild, component: Products },
   { path: routesConfig.detail, component: DetailProduct },
   {
     path: routesConfig.createProduct,

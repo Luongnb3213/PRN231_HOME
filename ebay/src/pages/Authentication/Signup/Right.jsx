@@ -9,12 +9,14 @@ import { urlDev } from "../../../constant/url";
 import { requireHeader } from "../../../constant/url";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import LoadingComponent from "../../../Components/LoadingComponent";
 
 const saveTokenToCookie = (accessToken) => {
   Cookies.set("accessToken", accessToken, { expires: 7 });
 };
 
 export default function Right(props) {
+  const [isLoadingSignup, setIsLoadingSignup] = useState(false);
   const navigate = useNavigate();
   const [msgExist, setMsgExist] = useState("");
   const [msgErr, setMsgErr] = useState({
@@ -57,6 +59,8 @@ export default function Right(props) {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
+    setIsLoadingSignup(true);
+
     try {
       await validationSchema.validate(
         { firstName, lastName, email, password },
@@ -89,6 +93,7 @@ export default function Right(props) {
             password: register.password,
             rememberMe: false,
           };
+          setIsLoadingSignup(false);
 
           axios
             .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
@@ -102,6 +107,7 @@ export default function Right(props) {
             });
         })
         .catch((err) => {
+          setIsLoadingSignup(false);
           setMsgExist(err.response.data.Detail);
         });
     } catch (err) {
@@ -121,6 +127,7 @@ export default function Right(props) {
   };
   return (
     <div className="flex-grow">
+      {isLoadingSignup && <LoadingComponent />}
       <div className=" w-[25.75rem] m-auto mt-6">
         <h1 className="text-3xl font-medium mb-5">Create an account</h1>
         <div className="border border-stone-600 w-full h-[2.4rem] rounded-full p-[0.15rem] flex justify-between">

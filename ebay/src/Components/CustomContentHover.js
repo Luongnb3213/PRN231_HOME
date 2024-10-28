@@ -2,14 +2,25 @@ import Title from "antd/es/typography/Title";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const CustomContentHover = ({ arrayLink, title, imagePromotion, type }) => {
+const CustomContentHover = ({
+  arrayLink,
+  title,
+  imagePromotion,
+  type,
+  slug,
+}) => {
   return (
     <div>
       {type === "text" ? (
         <div>
-          <NavLink to={""}>
-            {title && <Title level={4}> {title} </Title>}
-          </NavLink>
+          {/* <NavLink to={`/products/${slug}`}> */}
+          {title && (
+            <Title level={4}>
+              {" "}
+              <a href={`/products/${slug}`}>{title}</a>{" "}
+            </Title>
+          )}
+          {/* </NavLink> */}
           <ul>
             {arrayLink.map((item, index) => {
               return (
