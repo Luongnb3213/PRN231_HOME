@@ -24,8 +24,6 @@ const Products = () => {
     fetch();
   }, []);
 
-  console.log(categoryState);
-
   return (
     <ConfigProvider
       theme={{

@@ -8,8 +8,6 @@ const Left = ({ data, idParent }) => {
         <div className="">Shop by Category</div>
         <ul>
           {data?.map((item, index) => {
-            // console.log(item);
-
             return (
               <li key={index} className={classNameLi}>
                 <NavLink
