@@ -8,7 +8,7 @@ const Minicart = () => {
         <h2 className="text-xl font-semibold">Shopping cart</h2>
         <p className="text-sm text-gray-600 mt-1">
           Something went wrong with one or more of your items,
-          <a href="#" className="text-blue-500 underline"> view cart</a> for detail.
+          <a href="https://example.com/" className="text-blue-500 underline"> view cart</a> for detail.
         </p>
       </div>
       <p className="text-xs py-6 text-gray-400">Time to start shopping!</p>

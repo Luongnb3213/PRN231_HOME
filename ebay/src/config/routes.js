@@ -14,6 +14,7 @@ const routesConfig = {
   Checkout: "/checkout",
   HomeSeller: "/homeseller",
   TrackingOrders: "/trackingorders",
+  Authorization: "/authorization"
 };
 
 export default routesConfig;

@@ -19,7 +19,7 @@ const PromotionsCard = () => {
                 List up to 250 Items for FREE Every Month!
               </Text>
               <Text>Pay no insertion fees on 250 auction-style or fixed price listings.</Text>
-              <a href="#" className="text-blue-500 underline">Learn more</a>
+              <a href="https://example.com/" className="text-blue-500 underline">Learn more</a>
               <div className="mt-2 flex items-center">
                 <Text>Oct 01 - Nov 01</Text>
                 <InfoCircleOutlined className="ml-2 text-gray-400" />

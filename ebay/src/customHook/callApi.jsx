@@ -1,10 +1,10 @@
 import axios from "axios";
 import { requireHeader, urlDev } from "../constant/url";
 import Cookies from "js-cookie";
-
+import { useNavigate } from 'react-router-dom';
 const customAxios = axios.create({
   baseURL: urlDev,
-  timeout: 10000,
+  timeout: 1000,
 });
 
 customAxios.interceptors.request.use(
@@ -25,11 +25,14 @@ customAxios.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       console.error("Unauthorized - Token có thể đã hết hạn!");
+
+
     }
     return Promise.reject(error);
   }
 );
 const requestAPI = async (method, url, data = null) => {
+ 
   const headers = {
     "X-Header-Required": requireHeader,
     "Content-Type": "application/json",

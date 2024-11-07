@@ -14,6 +14,7 @@ import SellerTracking from "../pages/Seller/TrackingOrders/SellerTracking.jsx";
 import Analytics from "../pages/Seller/Analytics/Analytics.jsx";
 import MyProducts from "../pages/Seller/MyProducts/MyProducts.jsx";
 import Shop from "../pages/Seller/Shop/Shop.jsx";
+import Authorization from "../pages/Authentication/Authorization/Authorization.js";
 
 const publicRoutes = [
   { path: routesConfig.root, component: Home },
@@ -53,6 +54,13 @@ const publicRoutes = [
     component: MyProducts,
     layout: "seller-layout",
   },
+
+  {
+    path: routesConfig.Authorization,
+    component: Authorization,
+    layout: "no-layout",
+  },
+
 ];
 
 export { publicRoutes };
