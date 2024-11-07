@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const ProductCard = ({ productData }) => {
   return (
-    <NavLink to={"/detail"}>
+    <NavLink to={`/detail/${productData.productID}`}>
       <div className="w-full">
         <img
           className="w-full h-[18.5rem]"

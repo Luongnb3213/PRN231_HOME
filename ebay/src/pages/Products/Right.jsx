@@ -5,12 +5,11 @@ import requestAPI from "../../customHook/callApi";
 import { useEffect, useState } from "react";
 import LoadingComponent from "../../Components/LoadingComponent";
 
-const Right = () => {
+const Right = ({ page, onChangePage }) => {
   const params = useParams();
   let { parent, child } = params;
-  let [page, setPage] = useState(1);
   let [totalPage, setTotalPage] = useState(0);
-  let [listProduct, setListProduct] = useState();
+  let [listProduct, setListProduct] = useState([]);
   let [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -35,35 +34,40 @@ const Right = () => {
       }
     };
     fetch();
-  }, [page]);
-
-  console.log(isLoading);
+    console.log(page);
+  }, [page, parent, child]);
 
   const handleChangePage = (current) => {
-    setPage(current);
+    onChangePage(current);
   };
-
-  // console.log(listProduct);
 
   return (
     <>
       {isLoading && <LoadingComponent />}
-      <div className={`w-full grid grid-cols-4 gap-4 gap-y-10`}>
-        {listProduct?.map((product, index) => (
-          <ProductCard key={index} productData={product} />
-        ))}
-      </div>
-      <div className="w-full mt-6">
-        <Pagination
-          defaultCurrent={1}
-          total={totalPage}
-          pageSize={1}
-          align="center"
-          size="default"
-          colorBgTextHover
-          onChange={(current) => handleChangePage(current)}
-        />
-      </div>
+      {listProduct.length === 0 && (
+        <div className="font-sans text-center">There is no data</div>
+      )}
+      {listProduct.length !== 0 && (
+        <>
+          <div className={`w-full grid grid-cols-4 gap-4 gap-y-10`}>
+            {listProduct?.map((product, index) => (
+              <ProductCard key={index} productData={product} />
+            ))}
+          </div>
+
+          <div className="w-full mt-6">
+            <Pagination
+              current={page}
+              total={totalPage}
+              pageSize={1}
+              align="center"
+              size="default"
+              colorBgTextHover
+              onChange={(current) => handleChangePage(current)}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };

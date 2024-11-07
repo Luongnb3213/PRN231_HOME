@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
-const Left = ({ data, idParent }) => {
+const Left = ({ data, idParent, page, onChangePage }) => {
   let classNameLi = "font-sans text-stone-800 hover:underline my-1";
 
+  const handlerClickPage = () => {
+    onChangePage(1);
+  };
   return (
     <div className="">
       <div className="w-full">
@@ -9,7 +12,11 @@ const Left = ({ data, idParent }) => {
         <ul>
           {data?.map((item, index) => {
             return (
-              <li key={index} className={classNameLi}>
+              <li
+                key={index}
+                className={classNameLi}
+                onClick={handlerClickPage}
+              >
                 <NavLink
                   to={`/products/${idParent}/${item.categoryID}`}
                   className={({ isActive }) => (isActive ? "font-bold" : "")}

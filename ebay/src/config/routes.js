@@ -4,7 +4,7 @@ const routesConfig = {
   signup: "/signup",
   products: "/products/:parent",
   productsChild: "/products/:parent/:child",
-  detail: "/detail",
+  detail: "/detail/:idProduct",
   createProduct: "/seller/createProduct",
   sellerTracking: "/seller/trackingorders",
   myProducts: "/seller/myProducts",

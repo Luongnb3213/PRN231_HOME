@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 
 const Products = () => {
   const [categoryState, setCategoryState] = useState();
+  let [page, setPage] = useState(1);
+
   const params = useParams();
 
   useEffect(() => {
@@ -44,10 +46,12 @@ const Products = () => {
             <Left
               data={categoryState?.response.listChildCategory}
               idParent={categoryState?.response.categoryId}
+              page={page}
+              onChangePage={setPage}
             />
           </div>
           <div className="col-span-5">
-            <Right />
+            <Right page={page} onChangePage={setPage} />
           </div>
         </div>
       </div>
