@@ -1,8 +1,13 @@
 import { NavLink } from "react-router-dom";
 
 const ProductCard = ({ productData }) => {
+  let url = "";
+  if (!productData.isBid) {
+    url = `/detail/${productData.productID}`;
+  }
+
   return (
-    <NavLink to={`/detail/${productData.productID}`}>
+    <NavLink to={url}>
       <div className="w-full">
         <img
           className="w-full h-[18.5rem]"

@@ -34,7 +34,6 @@ const Right = ({ page, onChangePage }) => {
       }
     };
     fetch();
-    console.log(page);
   }, [page, parent, child]);
 
   const handleChangePage = (current) => {

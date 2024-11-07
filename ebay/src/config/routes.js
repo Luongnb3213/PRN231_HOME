@@ -5,6 +5,7 @@ const routesConfig = {
   products: "/products/:parent",
   productsChild: "/products/:parent/:child",
   detail: "/detail/:idProduct",
+  detailBid: "/detailBid/:idProduct",
   createProduct: "/seller/createProduct",
   sellerTracking: "/seller/trackingorders",
   myProducts: "/seller/myProducts",
