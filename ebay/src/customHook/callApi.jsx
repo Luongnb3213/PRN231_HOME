@@ -25,8 +25,6 @@ customAxios.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       console.error("Unauthorized - Token có thể đã hết hạn!");
-
-
     }
     return Promise.reject(error);
   }
