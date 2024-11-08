@@ -19,7 +19,7 @@ const Right = ({ page, onChangePage }) => {
       try {
         const data = await requestAPI(
           "Get",
-          `https://kv7fckmg-4000.asse.devtunnels.ms/prn-product/api/Product/category/product?CategoryId=${
+          `/prn-product/api/Product/category/product?CategoryId=${
             child ? child : parent
           }&PageNumber=${page}&PageSize=8`
         );

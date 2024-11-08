@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Modal, Input } from 'antd';
+import { useNavigate } from "react-router-dom";
 const Authorization = () => {
-  const handleLogin = () => {};
+  const navigate = useNavigate();
+  const handleLogin = () => {
+
+    navigate("/signin");
+
+  };
   return (
     <div>
       <Modal
