@@ -24,7 +24,6 @@ const Right = ({ page, onChangePage }) => {
           }&PageNumber=${page}&PageSize=8`
         );
 
-        // console.log(data);
         setListProduct(data.response.items);
         setTotalPage(data.response.totalPages);
       } catch (error) {

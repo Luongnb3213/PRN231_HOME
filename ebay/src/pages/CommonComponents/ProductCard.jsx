@@ -4,6 +4,8 @@ const ProductCard = ({ productData }) => {
   let url = "";
   if (!productData.isBid) {
     url = `/detail/${productData.productID}`;
+  } else {
+    url = `/detailBid/${productData.productID}`;
   }
 
   return (

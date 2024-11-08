@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 const DetailRight = ({ productDetail }) => {
-  console.log(productDetail);
-
   return (
     <>
       <div className="font-sans font-bold text-[1.35rem]">
@@ -46,7 +44,7 @@ const DetailRight = ({ productDetail }) => {
           <span className="font-sans">{productDetail?.description}</span>
         </div>
         <div className="mb-6">
-          Returns:
+          Returns:{" "}
           <span className="font-sans">
             60 days returns. Seller pays for return shipping.
           </span>

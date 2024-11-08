@@ -81,7 +81,7 @@ const DetailLeft = () => {
             onSwiper={(swiper) => {
               mainSwiper.current = swiper;
             }}
-            onSlideChange={() => console.log("slide change")}
+            onSlideChange={() => {}}
             thumbs={{ swiper: thumbsSwiper }}
             slidesPerView={1}
             cssMode={true}
