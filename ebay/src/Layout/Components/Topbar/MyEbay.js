@@ -6,8 +6,8 @@ const MyEbay = () => {
   const EBayContent = {
     arrayLink: [
       {
-        content: "Tracking Orders",
-        url: "/trackingorders",
+        content: "Tracking bid",
+        url: "/trackingbid",
       },
       {
         content: "Summary",

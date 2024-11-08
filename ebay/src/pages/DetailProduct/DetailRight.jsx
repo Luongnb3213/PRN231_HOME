@@ -1,6 +1,21 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Modal, Input, Button } from "antd";
 
-const DetailRight = ({ productDetail }) => {
+const DetailRight = ({ productDetail, isBid }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <>
       <div className="font-sans font-bold text-[1.35rem]">
@@ -32,12 +47,43 @@ const DetailRight = ({ productDetail }) => {
         </div>
         <div className="text-red-600">{productDetail?.sold} sold</div>
       </div>
-      <div className="bg-[#3665F3] p-4 text-white text-center rounded-full mt-6 cursor-pointer hover:brightness-95">
-        Buy It Now
-      </div>
-      <div className="bg-white p-4 text-blue-500 text-center rounded-full mt-2 border-blue-500 border cursor-pointer hover:opacity-90">
-        Add to cart
-      </div>
+      {!isBid && (
+        <>
+          <div className="bg-[#3665F3] p-4 text-white text-center rounded-full mt-6 cursor-pointer hover:brightness-95">
+            Buy It Now
+          </div>
+          <div className="bg-white p-4 text-blue-500 text-center rounded-full mt-2 border-blue-500 border cursor-pointer hover:opacity-90">
+            Add to cart
+          </div>
+        </>
+      )}
+      {isBid && (
+        <>
+          <div
+            className="bg-[#3665F3] p-4 text-white text-center rounded-full mt-6 cursor-pointer hover:brightness-95"
+            onClick={showModal}
+          >
+            Place bid
+          </div>
+          <Modal
+            title="Place your bid"
+            open={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={[
+              <Button key="cancel" onClick={handleCancel}>
+                Cancel
+              </Button>,
+              <Button key="submit" type="primary" onClick={handleOk}>
+                Place Bid
+              </Button>,
+            ]}
+          >
+            <p>Enter your bid amount:</p>
+            <Input type="number" placeholder="Bid amount" />
+          </Modal>
+        </>
+      )}
       <div className="w-full mt-8 ">
         <div className="mb-6">
           Description:{" "}

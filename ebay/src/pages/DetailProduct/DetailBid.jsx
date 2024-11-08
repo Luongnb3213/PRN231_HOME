@@ -5,29 +5,29 @@ import { useEffect, useState } from "react";
 import requestAPI from "../../customHook/callApi";
 import LoadingComponent from "../../Components/LoadingComponent";
 
-const DetailProduct = () => {
+const DetailBid = () => {
   const params = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [productDetail, setProductDetail] = useState();
 
-  useEffect(() => {
-    setIsLoading(true);
-    if (params.idProduct) {
-      const fetch = async () => {
-        try {
-          const data = await requestAPI(
-            "Get",
-            `/prn-product/get-product-detail-buy-now?productId=${params.idProduct}`
-          );
-          setProductDetail(data);
-        } finally {
-          setIsLoading(false);
-        }
-      };
+  //   useEffect(() => {
+  //     setIsLoading(true);
+  //     if (params.idProduct) {
+  //       const fetch = async () => {
+  //         try {
+  //           const data = await requestAPI(
+  //             "Get",
+  //             `/prn-product/get-product-detail-buy-now?productId=${params.idProduct}`
+  //           );
+  //           setProductDetail(data);
+  //         } finally {
+  //           setIsLoading(false);
+  //         }
+  //       };
 
-      fetch();
-    }
-  }, [params]);
+  //       fetch();
+  //     }
+  //   }, [params]);
 
   return (
     <>
@@ -37,11 +37,11 @@ const DetailProduct = () => {
           <DetailLeft />
         </div>
         <div className="w-full col-span-4">
-          <DetailRight productDetail={productDetail?.response} isBid={false} />
+          <DetailRight productDetail={productDetail?.response} isBid={true} />
         </div>
       </div>
     </>
   );
 };
 
-export default DetailProduct;
+export default DetailBid;

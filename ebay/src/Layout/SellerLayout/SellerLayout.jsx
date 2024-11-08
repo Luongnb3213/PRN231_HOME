@@ -33,7 +33,7 @@ const SellerLayout = ({ children }) => {
                 Analytics
               </div>
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to={"/seller/trackingorders"}
               className={({ isActive }) => (isActive ? active : "")}
             >
@@ -43,7 +43,7 @@ const SellerLayout = ({ children }) => {
               >
                 Tracking orders
               </div>
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to={"/seller/createProduct"}
               className={({ isActive }) => (isActive ? active : "")}

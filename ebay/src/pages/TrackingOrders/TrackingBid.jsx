@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import OrderCard from "./OrderCard";
+import BidCard from "./BidCard";
 
-const TrackingOrders = () => {
+const TrackingBid = () => {
   return (
     <div className=" w-5/6 m-auto rounded-sm grid grid-cols-6 p-8">
-      <div className="w-full h-full p-4 col-span-1">
+      {/* <div className="w-full h-full p-4 col-span-1">
         <ul>
           <li className="hover:text-blue-600 hover:scale-105 transition mt-4">
             <NavLink>All orders</NavLink>
@@ -16,14 +17,15 @@ const TrackingOrders = () => {
             <NavLink>Completed orders</NavLink>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className="w-full h-full bg-stone-300 col-span-5 p-4">
-        <OrderCard status={0} role={"customer"} />
-        <OrderCard status={1} role={"customer"} />
-        <OrderCard status={2} role={"customer"} />
+        <BidCard />
+        <BidCard />
+        <BidCard />
+        <BidCard />
       </div>
     </div>
   );
 };
 
-export default TrackingOrders;
+export default TrackingBid;
