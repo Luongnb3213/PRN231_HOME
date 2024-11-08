@@ -1,26 +1,27 @@
-import Button from "./Button";
-import Input from "./Input";
-import { NavLink } from "react-router-dom";
-import * as Yup from "yup";
-import { useRef } from "react";
-import { useState } from "react";
-import ErrorMsg from "../../CommonComponents/Error";
-import axios from "axios";
-import { urlDev, requireHeader } from "../../../constant/url";
-import LoadingComponent from "../../../Components/LoadingComponent";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-
+import Button from './Button';
+import Input from './Input';
+import { NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
+import { useRef } from 'react';
+import { useState } from 'react';
+import ErrorMsg from '../../CommonComponents/Error';
+import axios from 'axios';
+import { urlDev, requireHeader } from '../../../constant/url';
+import LoadingComponent from '../../../Components/LoadingComponent';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 const saveTokenToCookie = (accessToken) => {
-  Cookies.set("accessToken", accessToken, { expires: 7 });
+  Cookies.set('accessToken', accessToken, { expires: 7 });
 };
 
 export default function Signin() {
   const [showError, setShowError] = useState(false);
   const usernameValueRef = useRef();
   const passwordValueRef = useRef();
-  const [msgErr, setMsgErr] = useState("");
-  const [errUsername, setErrUsername] = useState("");
+  const [msgErr, setMsgErr] = useState('');
+  const [errUsername, setErrUsername] = useState('');
   const [isLoadingUsername, setIsLoadingUsername] = useState(false);
   const [isLoadingSignin, setIsLoadingSignin] = useState(false);
   const [isUsernameYet, setIsUsernameYet] = useState(false);
@@ -30,7 +31,7 @@ export default function Signin() {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
+    username: Yup.string().required('Username is required'),
   });
 
   let handleBtnClick = null;
@@ -47,8 +48,8 @@ export default function Signin() {
         };
 
         const headers = {
-          "X-Header-Required": requireHeader,
-          "Content-Type": "application/json",
+          'X-Header-Required': requireHeader,
+          'Content-Type': 'application/json',
         };
 
         setIsLoadingUsername(true);
@@ -72,7 +73,7 @@ export default function Signin() {
             setIsUsernameYet(false);
             setErrUsername(error.response.data.Detail);
 
-            setUser("hong có");
+            setUser('hong có');
           });
       } catch (err) {
         setShowError((prev) => true);
@@ -86,11 +87,11 @@ export default function Signin() {
   if (isUsernameYet) {
     handleBtnClick = () => {
       try {
-        if (passwordValueRef.current.value.trim() !== "") {
+        if (passwordValueRef.current.value.trim() !== '') {
           setErrUsername(null);
           const headers = {
-            "X-Header-Required": requireHeader,
-            "Content-Type": "application/json",
+            'X-Header-Required': requireHeader,
+            'Content-Type': 'application/json',
           };
           const params = {
             ...user,
@@ -99,7 +100,7 @@ export default function Signin() {
           setIsLoadingSignin(true);
 
           axios
-            .post(urlDev + "/prn-authen/api/Auth/login", params, { headers })
+            .post(urlDev + '/prn-authen/api/Auth/login', params, { headers })
             .then((response) => {
               setShowError(false);
               setMsgErr(null);
@@ -108,7 +109,7 @@ export default function Signin() {
               console.log(token);
 
               saveTokenToCookie(token);
-              navigate("/");
+              navigate('/');
             })
             .catch((error) => {
               setShowError(true);
@@ -116,11 +117,23 @@ export default function Signin() {
               setMsgErr(error.response.data.Detail);
             });
         } else {
-          setErrUsername("Password is required");
+          setErrUsername('Password is required');
         }
       } catch (error) {}
     };
   }
+  const googleSuccess = async (res) => {
+    const token = res?.credential;
+    const result = jwtDecode(token);
+    try { 
+        console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const googleFailure = (e) => {
+    console.log(e);
+  };
 
   return (
     <>
@@ -161,7 +174,7 @@ export default function Signin() {
           <header className="w-full text-center">
             <h1 className="text-[2.5rem] font-medium text-login">Hello</h1>
             <p className="inline-block text-[0.9rem] mr-1">
-              Sign in to eBay or{" "}
+              Sign in to eBay or{' '}
             </p>
             <div className="inline-block text-[0.9rem] cursor-pointer text-blue-600 underline">
               <NavLink to="/signup">create an account</NavLink>
@@ -199,16 +212,10 @@ export default function Signin() {
           </div>
           <Button className="block m-auto w-[22rem] h-12 border border-stone-700 text-stone-700 rounded-full hover:opacity-80">
             <div className="w-full h-full flex justify-center items-center flex-row relative">
-              <div className="w-6 h-6 absolute left-5">
-                <img
-                  src="https://ir.ebaystatic.com/rs/c/sgninui-src-static-images-google-logo-icon-PNG-Transparent-Background-Z_TFsqo3.png"
-                  className="ggl-icon"
-                  alt=""
-                />
-              </div>
-              <span>Continue with Google</span>
+              <GoogleLogin className="w-full" onSuccess={googleSuccess} onError={googleFailure} />
             </div>
           </Button>
+         
           <div className="flex items-center justify-center flex-row w-[8.75rem] m-auto mt-6">
             <input
               ref={refRemember}
