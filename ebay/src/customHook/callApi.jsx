@@ -1,10 +1,10 @@
 import axios from "axios";
 import { requireHeader, urlDev } from "../constant/url";
 import Cookies from "js-cookie";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const customAxios = axios.create({
   baseURL: urlDev,
-  timeout: 1000,
+  // timeout: 1000,
 });
 
 customAxios.interceptors.request.use(
@@ -30,7 +30,6 @@ customAxios.interceptors.response.use(
   }
 );
 const requestAPI = async (method, url, data = null) => {
- 
   const headers = {
     "X-Header-Required": requireHeader,
     "Content-Type": "application/json",

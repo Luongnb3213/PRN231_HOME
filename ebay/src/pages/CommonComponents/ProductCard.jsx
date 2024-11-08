@@ -15,15 +15,15 @@ const ProductCard = ({ productData }) => {
           alt=""
         />
         <div>
-          <div className="mt-2 hover:underline">{productData.productName}</div>
+          <div className="mt-2 hover:underline">{productData?.productName}</div>
           <div className="text-xl font-sans font-bold italic mt-2 cursor-text">
-            $ {productData.price}
+            $ {productData?.price}
           </div>
           <div className="text-stone-700 text-base cursor-text">
             Free shipping
           </div>
           <div className="text-red-600 cursor-text">
-            {productData.quantitySold}
+            {productData?.quantitySold}
           </div>
         </div>
       </div>
