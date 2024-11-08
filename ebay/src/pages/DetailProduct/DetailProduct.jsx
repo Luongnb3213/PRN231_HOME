@@ -17,7 +17,7 @@ const DetailProduct = () => {
         try {
           const data = await requestAPI(
             "Get",
-            `https://kv7fckmg-4000.asse.devtunnels.ms/prn-product/get-product-detail-buy-now?productId=${params.idProduct}`
+            `/prn-product/get-product-detail-buy-now?productId=${params.idProduct}`
           );
           setProductDetail(data);
         } finally {
