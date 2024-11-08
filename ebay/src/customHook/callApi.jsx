@@ -1,18 +1,20 @@
 import axios from "axios";
 import { requireHeader, urlDev } from "../constant/url";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+
+
 const customAxios = axios.create({
-  baseURL: urlDev,
-  // timeout: 1000,
+  baseURL: urlDev
 });
+
+
+const exemptedUrls = ["/home"];
+
 
 customAxios.interceptors.request.use(
   (config) => {
     const token = Cookies.get("accessToken");
-    // console.log(token);
-
-    if (token) {
+    if (token && !exemptedUrls.includes(config.url)) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
@@ -20,15 +22,18 @@ customAxios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+
 customAxios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      console.error("Unauthorized - Token có thể đã hết hạn!");
+    if (error.response && error.response.status === 403) {
+
+      window.location.href = "/authorization";
     }
     return Promise.reject(error);
   }
 );
+
 const requestAPI = async (method, url, data = null) => {
   const headers = {
     "X-Header-Required": requireHeader,
@@ -43,8 +48,12 @@ const requestAPI = async (method, url, data = null) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Lỗi khi call API:", error.message);
-    throw error;
+    if (error.code === "ECONNABORTED" && exemptedUrls.includes(url)) {
+      console.warn(`Timeout occurred on ${url}, nhưng đã được bỏ qua.`);
+      return null;
+    } else {
+      console.log(error)
+    }
   }
 };
 
