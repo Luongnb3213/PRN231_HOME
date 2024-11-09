@@ -1,6 +1,6 @@
 const LoadingComponent = () => {
   return (
-    <div className="fixed inset-0 z-10 bg-stone-900 opacity-80">
+    <div className="fixed inset-0 z-10 bg-stone-900 opacity-20">
       <img
         src="/gif/yy3.gif"
         alt=""

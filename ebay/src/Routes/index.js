@@ -16,6 +16,7 @@ import Shop from "../pages/Seller/Shop/Shop.jsx";
 import Authorization from "../pages/Authentication/Authorization/Authorization.js";
 import DetailBid from "../pages/DetailProduct/DetailBid.jsx";
 import TrackingBid from "../pages/TrackingOrders/TrackingBid.jsx";
+import UpdateProducts from "../pages/Seller/MyProducts/UpdateProducts.jsx";
 
 const publicRoutes = [
   { path: routesConfig.root, component: Home },
@@ -54,6 +55,11 @@ const publicRoutes = [
   {
     path: routesConfig.myProducts,
     component: MyProducts,
+    layout: "seller-layout",
+  },
+  {
+    path: routesConfig.updateProducts,
+    component: UpdateProducts,
     layout: "seller-layout",
   },
 

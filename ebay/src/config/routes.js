@@ -9,6 +9,7 @@ const routesConfig = {
   createProduct: "/seller/createProduct",
   sellerTracking: "/seller/trackingorders",
   myProducts: "/seller/myProducts",
+  updateProducts: "/seller/updateProducts/:id",
   Analytics: "/seller/analytics",
   Shop: "/seller/shop/:idSeller",
   Cart: "/cart",
