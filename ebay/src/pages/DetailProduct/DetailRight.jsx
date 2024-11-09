@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import { Modal, Input, Button } from "antd";
 
 const DetailRight = ({ productDetail, isBid }) => {
+  console.log(isBid);
+  console.log(productDetail);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -28,7 +31,9 @@ const DetailRight = ({ productDetail, isBid }) => {
           alt=""
         />
         <div className="underline cursor-pointer hover:text-stone-700">
-          <NavLink to={"/seller/shop"}>{productDetail?.sellerName}</NavLink>
+          <NavLink to={`/seller/shop/${productDetail?.sellerId}`}>
+            {productDetail?.sellerName}
+          </NavLink>
         </div>
       </div>
       <div className="font-sans font-bold text-2xl mb-8">

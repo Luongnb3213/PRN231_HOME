@@ -2,10 +2,12 @@ import { NavLink } from "react-router-dom";
 
 const ProductCard = ({ productData }) => {
   let url = "";
-  if (!productData.isBid) {
-    url = `/detail/${productData.productID}`;
-  } else {
-    url = `/detailBid/${productData.productID}`;
+  if (productData) {
+    if (!productData.isBid) {
+      url = `/detail/${productData.productID}`;
+    } else {
+      url = `/detailBid/${productData.productID}`;
+    }
   }
 
   return (
